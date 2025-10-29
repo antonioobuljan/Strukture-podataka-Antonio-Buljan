@@ -1,0 +1,19 @@
+
+.vs/
+*.vsidx
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+
+bin/
+obj/
+Debug/
+Release/
+
+
+Thumbs.db
+*.log
+*.tmp
+echo ".vs/" >> .gitignore.txt
