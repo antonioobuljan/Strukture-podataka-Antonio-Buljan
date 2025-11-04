@@ -1,0 +1,167 @@
+﻿#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+#include<errno.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+//Struktura za stog
+
+typedef struct list {
+	int number;
+	struct list* next;
+} list;
+
+//prototipi funkcija
+
+int writeInFile(char* filename); //prototip funkcije za pisanje u datoteku
+int push(list** head, int number); //prototip funkcije za dodavanje na stog
+int pop(list** head); //prototip funkcije za uklanjanje sa stoga
+int freeStack(list** head); //prototip funkcije za oslobadjanje stoga 
+int calculatePostfix(char* filename); //prototip funkcije za racunanje postfix izraza
+
+//glavni dio programa 
+
+int main() 
+{
+	char fileName[50];
+	printf("Unesite ime datoteke: "); //Unošenje imena datoteke
+	if (scanf_s("%49s", fileName, (unsigned)sizeof(fileName)) !=1) {
+		printf("Greska pri unosu imena datoteke.\n");
+		return 1;
+	}
+ 
+	if (writeInFile(fileName) !=0) { //Poziv funkcije za pisanje u datoteku
+		printf("Greska pri pisanju u datoteku.\n");
+		return 1;
+	}
+
+	int result = calculatePostfix(fileName); //Poziv funkcije za racunanje postfix izraza
+	printf("Rezultat: %d\n", result);
+
+	return 0;	
+}
+
+//funkcija za pisanje u datoteku
+
+int writeInFile(char* filename) 
+{
+	FILE* file = NULL;
+	errno_t ferr = fopen_s(&file, filename, "w");
+	if (ferr !=0 || file == NULL) {
+		perror("fopen failed");
+		return -1;
+	}
+
+	printf("Unesite postfix izraz (npr.2334 +45 *): ");
+	int ch = getchar(); //ciscenje \n
+	char expression[100];
+	fgets(expression, sizeof(expression), stdin);
+
+	fputs(expression, file);
+	fclose(file);
+	return 0;
+}
+
+//funkcija za dodavanje na stog
+
+int push(list** head, int number) 
+{
+	list* newElement = (list*)malloc(sizeof(list));
+	if (newElement == NULL)
+		return -1;
+	newElement->number = number;
+	newElement->next = *head;
+	*head = newElement;
+	return 0;
+}
+
+//funkcija za uklanjanje sa stoga
+
+int pop(list** head) 
+{
+	if (*head == NULL) {
+		printf("Stog je prazan!\n");
+		return -1;
+	}
+	list* temp = *head;
+	int number = temp->number;
+	*head = (*head)->next;
+	free(temp);
+	return
+		number;
+}
+
+//funkcija za oslobadjanje stoga
+
+int freeStack(list** head) 
+{
+	list* current = *head;
+	list* next;
+	while (current != NULL) {
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*head = NULL;
+	return 0;
+}
+
+//funkcija za racunanje postfix izraza
+
+int calculatePostfix(char* filename) 
+{
+	FILE* file = fopen(filename, "r");
+	if (file == NULL) {
+		printf("Greska pri otvaranju datoteke.\n");
+		return -1;
+	}
+	list* stack = NULL;
+	int ch;
+	while ((ch = fgetc(file)) != EOF) {
+		char c = (char)ch;
+		if (c == ' ' || c == '\n') continue;
+		if (c >= '0' && c <= '9') {
+			push(&stack, c - '0');
+		}
+		else {
+			int b = pop(&stack);
+			int a = pop(&stack);
+			int result;
+			switch (c) {
+				case '+':
+					result = a + b;
+					break;
+				case '-':
+					result = a - b;
+					break;
+				case '*':
+					result = a * b;
+					break;
+				case '/':
+					if (b ==0) {
+						printf("Greska: dijeljenje s nulom.\n");
+						fclose(file);
+						freeStack(&stack);
+						return -1;
+					}
+					result = a / b;
+					break;
+				default:
+					printf("Nepoznat operator: %c\n", c);
+					fclose(file);
+					freeStack(&stack);
+					return -1;
+			}
+			push(&stack, result);
+		}
+	}
+	fclose(file);
+	int finalResult = pop(&stack);
+	if (stack != NULL) {
+		printf("Greska: izraz nije ispravan.\n");
+		freeStack(&stack);
+		return -1;
+	}
+	return finalResult;
+}

@@ -1,19 +1,14 @@
-
+# Visual Studio
 .vs/
-*.vsidx
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-
-bin/
-obj/
-Debug/
-Release/
-
-
-Thumbs.db
-*.log
-*.tmp
-echo ".vs/" >> .gitignore.txt
+# Build artefakti
+x64/Debug/
+*.exe
+*.obj
+*.ilk
+*.pdb
+*.tlog/

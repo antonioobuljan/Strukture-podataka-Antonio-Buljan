@@ -1,0 +1,10 @@
+# Visual Studio privremeni folderi
+.vs/
+
+# Build artefakti
+x64/Debug/
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.tlog/
