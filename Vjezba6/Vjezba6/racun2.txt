@@ -1,0 +1,5 @@
+2025-11-25
+Mlijeko,6,1.20
+Sok,3,1.9
+Krumpir,5,0.5
+Rajcica,10,1.2
