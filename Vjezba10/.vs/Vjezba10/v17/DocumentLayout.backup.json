@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\OneDrive\\Desktop\\Strukture podataka\\Vjezba10\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1A87E752-1754-4D57-A339-2F890E36347A}|Vjezba10\\Vjezba10.vcxproj|C:\\Users\\Admin\\OneDrive\\Desktop\\Strukture podataka\\Vjezba10\\Vjezba10\\vjezba10.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1A87E752-1754-4D57-A339-2F890E36347A}|Vjezba10\\Vjezba10.vcxproj|solutionrelative:Vjezba10\\vjezba10.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "vjezba10.c",
+              "DocumentMoniker": "C:\\Users\\Admin\\OneDrive\\Desktop\\Strukture podataka\\Vjezba10\\Vjezba10\\vjezba10.c",
+              "RelativeDocumentMoniker": "Vjezba10\\vjezba10.c",
+              "ToolTip": "C:\\Users\\Admin\\OneDrive\\Desktop\\Strukture podataka\\Vjezba10\\Vjezba10\\vjezba10.c",
+              "RelativeToolTip": "Vjezba10\\vjezba10.c",
+              "ViewState": "AgIAANkAAAAAAAAAAAAAAN8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-07T17:12:29.207Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

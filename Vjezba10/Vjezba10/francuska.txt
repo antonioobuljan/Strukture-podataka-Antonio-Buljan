@@ -1,0 +1,3 @@
+Paris,1030588
+Marsseiles,891338
+Nice,433721
